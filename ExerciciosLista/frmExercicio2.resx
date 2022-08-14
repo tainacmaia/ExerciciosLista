@@ -57,4 +57,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Você deve implementar uma função que retorne a diferença entre o maior e o menor valor em
+uma determinada lista recebida como parâmetro.
+
+- A lista contém números inteiros, o que significa que pode conter alguns números negativos
+- Se a lista estiver vazia ou contiver um único elemento, retorne 0
+- A lista não está ordenada</value>
+  </data>
 </root>
