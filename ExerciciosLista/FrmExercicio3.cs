@@ -10,16 +10,24 @@ using System.Windows.Forms;
 
 namespace ExerciciosLista
 {
-    public partial class frmExercicio2 : Form
+    public partial class frmExercicio3 : Form
     {
         List<int> listaInteiros = new();
         int numero;
-        int maiorValor;
-        int menorValor;
+        int numeroProximo;
+        bool empate = false;
 
-        public frmExercicio2()
+        public frmExercicio3()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+            {
+                lblRegistro.Text = "";
+            }
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -42,7 +50,7 @@ namespace ExerciciosLista
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter &&
-                textBox1 != null && int.TryParse(textBox1.Text, out numero))
+    textBox1 != null && int.TryParse(textBox1.Text, out numero))
             {
                 e.Handled = true;
                 listaInteiros.Add(int.Parse(textBox1.Text));
@@ -66,28 +74,43 @@ namespace ExerciciosLista
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            if (listaInteiros.Count != 0)
+            for (int i = 0; i < listaInteiros.Count; i++)
             {
-                maiorValor = listaInteiros.Max();
-                menorValor = listaInteiros.Min();
-                lblResultado.Text = $"Diferença entre o maior e o menor valor: {CalculaDiferenca(maiorValor, menorValor)}";
+                if (i == 0)
+                {
+                    numeroProximo = listaInteiros[i];
+                }
+                if (numeroProximo > listaInteiros[i])
+                {
+                    numeroProximo = listaInteiros[i];
+                }
+                if (i == listaInteiros.Count - 1 && 
+                    listaInteiros.Any(x => Math.Abs(x-0) == Math.Abs(numeroProximo-0) && x != numeroProximo))
+                {
+                    lblResultado.Text = "Número mais próximo de zero: Nenhum";
+                    empate = true;
+                    textBox1.Enabled = false;
+                }
             }
-            else
-            {
-                lblResultado.Text = "Diferença entre o maior e o menor valor: 0";
-            }
-            textBox1.Enabled = false;
-        }
 
-        private int CalculaDiferenca(int maior, int menor)
-        {
-            return maior - menor;
+            if (!empate && listaInteiros.Count != 0)
+            {
+                lblResultado.Text = $"Número mais próximo de zero: {numeroProximo}";
+                textBox1.Enabled = false;
+            }
+
+            if (listaInteiros.Count == 0)
+            {
+                lblResultado.Text = "Não há números para cálculo.";
+                textBox1.Focus();
+            }
+
         }
 
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var form = new frmExercicio2();
+            var form = new frmExercicio3();
             form.Closed += (s, args) => this.Close();
             form.Show();
         }
@@ -98,14 +121,6 @@ namespace ExerciciosLista
             var form = new FrmMenu();
             form.Closed += (s, args) => this.Close();
             form.Show();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox1.Text != "")
-            {
-                lblRegistro.Text = "";
-            }
         }
     }
 }

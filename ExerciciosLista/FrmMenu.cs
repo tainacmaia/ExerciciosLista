@@ -27,5 +27,13 @@ namespace ExerciciosLista
             form.Closed += (s, args) => this.Close();
             form.Show();
         }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var form = new frmExercicio3();
+            form.Closed += (s, args) => this.Close();
+            form.Show();
+        }
     }
 }

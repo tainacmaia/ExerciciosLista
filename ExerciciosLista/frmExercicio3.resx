@@ -57,4 +57,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblEnunciado.Text" xml:space="preserve">
+    <value>Basta encontrar o valor mais próximo de zero na lista. Observe que há negativos na lista.
+
+A lista não está sempre vazia e contém apenas números inteiros. 
+Retorne "Nenhum" se não for possível definir apenas um desses valores. 
+E, claro, esperamos 0 como valor mais próximo de zero.</value>
+  </data>
 </root>
